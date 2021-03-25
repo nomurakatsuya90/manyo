@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :tasks do
-    collection do
-      post :confirm
-    end
+    # collection do
+    #   post :confirm
+    # end
   end
   # get 'tasks/index'
   # get 'tasks/new'
