@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     #   post :confirm
     # end
   end
+  root to: 'tasks#index'
   # get 'tasks/index'
   # get 'tasks/new'
   # get 'tasks/edit'
