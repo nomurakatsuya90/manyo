@@ -8,12 +8,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         # 2. 新規登録内容を入力する
         #「タスク名」というラベル名の入力欄と、「タスク詳細」というラベル名の入力欄にタスクのタイトルと内容をそれぞれ入力する
         # ここに「タスク名」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
-        fill_in "title", with: 'タスク名'
+        fill_in "task_title", with: 'タスク名'
         # ここに「タスク詳細」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
-        fill_in "content", with: 'タスク詳細'
+        fill_in "task_content", with: 'タスク詳細'
         # 3. 「登録する」というvalue（表記文字）のあるボタンをクリックする
         # ここに「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
-        click_button '登録する'
+        click_button 'commit'
         # 4. clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
         # （タスクが登録されたらタスク詳細画面に遷移されるという前提）
         # ここにタスク詳細ページに、テストコードで作成したデータがタスク詳細画面にhave_contentされているか（含まれているか）を確認（期待）するコードを書く
@@ -30,7 +30,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         # タスク一覧ページに遷移
         visit tasks_path
         # ページ遷移直後でデバッグ
-        binding.irb
+        # binding.irb
         # タスク一覧ページに遷移できているかを確認
         current_path
         # タスクがデータベースに作成されているかを確認
