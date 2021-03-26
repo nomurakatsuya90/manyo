@@ -36,10 +36,10 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
-        task_list = all('.task_row')
-        expect(task_list[0]).to have_content '2021-03-26 17:01'
-        expect(task_list[1]).to have_content '2021-03-26 17:02'
-        expect(task_list[2]).to have_content '2021-03-26 17:03'
+        task_list = all('.task_title')
+        expect(task_list[0]).to have_content 'task03'
+        expect(task_list[1]).to have_content 'task02'
+        expect(task_list[2]).to have_content 'task01'
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe 'タスク管理機能', type: :system do
        it '該当タスクの内容が表示される' do
         click_link 'taskの詳細', match: :first
         #登録タスクの内容が表示
-        expect(page).to have_content 'task01'   
+        expect(page).to have_content 'task03'   
        end
      end
   end
