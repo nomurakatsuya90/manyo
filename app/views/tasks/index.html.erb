@@ -1,9 +1,9 @@
-<h1>task一覧</h1>
+<h1><%= t('application.task index') %></h1>
 <p><%= notice %></p>
 <table>
   <tr>
-    <th>タイトル</th>
-    <th>内容</th>
+    <th><%= t('application.Title') %></th>
+    <th><%= t('application.Content') %></th>
   </tr>
 <% @tasks.each do |task| %>　　
   <tr>
