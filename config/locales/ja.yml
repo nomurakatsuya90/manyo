@@ -18,7 +18,15 @@ ja:
     Show: 詳細画面
   favorites:
     FavoritePictures: 'お気に入り写真'
-  pictures:
+  tasks:
+    show: '詳細'
+    edit: '編集'
+    delete: '削除'
+    create: '新しくタスクを投稿する'
+    Back index: 'タスク一覧画面にもどる'
+    Edit really?: '本当に編集していいですか？'
+    Delete really?: '本当に削除していいですか？'
+    error exist: '件のエラーがあります。'
     Confirm: '確認画面'
     Pictures: '投稿写真'
     Image: '写真'
