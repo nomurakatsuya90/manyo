@@ -11,7 +11,6 @@ class TasksController < ApplicationController
     else
       @tasks = @tasks.order(created_at: :DESC) 
     end
-
     #検索
     if params[:title] != "" && params[:title] != nil
       @tasks = @tasks.title_search(params[:title])
@@ -20,6 +19,8 @@ class TasksController < ApplicationController
     if params[:status] != "" && params[:status] != nil
       @tasks = @tasks.status_search(params[:status])
     end
+    #ページネーション　kaminari
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def new
