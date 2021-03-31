@@ -3,12 +3,22 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    #ソート
     if params[:sort_expired]
       @tasks = @tasks.order(expired_at: :ASC)
     elsif params[:sort_priority]
       @tasks = @tasks.order(priority: :DESC)
     else
       @tasks = @tasks.order(created_at: :DESC) 
+    end
+
+    #検索
+    if params[:title] != "" && params[:title] != nil
+      @tasks = @tasks.title_search(params[:title])
+    end
+    
+    if params[:status] != "" && params[:status] != nil
+      @tasks = @tasks.status_search(params[:status])
     end
   end
 
