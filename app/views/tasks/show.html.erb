@@ -2,4 +2,7 @@
 <p><%= notice %></p>
 <p><%= t('application.Title') %>: <%= @task.title %></p>
 <p><%= t('application.Content') %>: <%= @task.content %></p>
+<p><%= simple_time(@task.expired_at) %></p>
+<p><%= @task.status %></p>
+<p><%= @task.priority %></p>
 <%= link_to t('tasks.Back index'), tasks_path %>

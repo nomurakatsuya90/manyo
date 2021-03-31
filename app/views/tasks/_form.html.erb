@@ -17,6 +17,18 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
+  <div class="task_expired_at">
+    <%= form.label :expired_at %>
+    <%= form.datetime_field :expired_at %>
+  </div>
+  <div class="task_status">
+    <%= form.label :status, 'status' %>
+    <%= form.select :status, Task.statuses.keys, { include_blank: '選択してください'} %>
+  </div>
+  <div class="task_priority">
+    <%= form.label :priority, 'priority' %>
+    <%= form.select :priority, Task.priorities.keys, { include_blank: '選択してください' } %>
+  </div>
   <%= form.submit %>
   <%= link_to t('tasks.Back index'), tasks_path %>
 <% end %>
