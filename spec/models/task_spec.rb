@@ -35,7 +35,8 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'scopeメソッドでステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
-        # expect(Task.status_search('完了').status).to eq(task01)
+        expect(Task.status_search('着手中')).to include(task02)
+        expect(Task.status_search('着手中')).not_to include(task01)
       end
     end
     context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
