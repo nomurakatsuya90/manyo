@@ -14,9 +14,11 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "task_title", with: 'タスク名'
         fill_in "task_content", with: 'タスク詳細'
+        fill_in :task_expired_at, with: '2021-04-01 10:35'.to_datetime
         click_button 'commit'
         expect(page).to have_content 'タスク名'
         expect(page).to have_content 'タスク詳細'
+        expect(page).to have_content '2021-04-01　10:35'
       end
     end
   end
