@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task03) { FactoryBot.create(:task, title: 'task03', content: '内容03', created_at: '2021-03-26 17:03') }
-  let!(:task01) { FactoryBot.create(:task, title: 'task01', content: '内容01', created_at: '2021-03-26 17:01') }
-  let!(:task02) { FactoryBot.create(:task, title: 'task02', content: '内容02', created_at: '2021-03-26 17:02') }
+  let!(:task03) { FactoryBot.create(:task, title: 'task03', content: '内容03', created_at: '2021-03-26 17:03', expired_at: '2021-04-03 16:01') }
+  let!(:task01) { FactoryBot.create(:task, title: 'task01', content: '内容01', created_at: '2021-03-26 17:01', expired_at: '2021-04-01 17:02') }
+  let!(:task02) { FactoryBot.create(:task, title: 'task02', content: '内容02', created_at: '2021-03-26 17:02', expired_at: '2021-04-02 15:02') }
 
   before do
     visit tasks_path
@@ -42,6 +42,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[0]).to have_content 'task03'
         expect(task_list[1]).to have_content 'task02'
         expect(task_list[2]).to have_content 'task01'
+      end
+    end
+    context '「終了期限でソート」を押下した場合' do
+      it '終了期限が早い順番で上から表示される' do
+        click_link '終了期限でソート'
+        task_list = all('.task_expired_at')
+        expect(task_list[0]).to have_content '2021-04-01　17:02'
+        expect(task_list[1]).to have_content '2021-04-02　15:02'
+        expect(task_list[2]).to have_content '2021-04-03　16:01'
       end
     end
   end
