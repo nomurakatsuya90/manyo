@@ -104,9 +104,9 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
-        click_link 'taskの詳細', match: :first
+        click_link '詳細', match: :first
         #登録タスクの内容が表示
-        expect(page).to have_content 'task03'   
+        expect(page).to have_content 'task03'
        end
      end
   end
