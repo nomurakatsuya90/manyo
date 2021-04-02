@@ -22,13 +22,15 @@
     <td class='task_expired_at'><%= simple_time(task.expired_at) %></td>
     <td class='task_status'><%= task.status %></td>
     <td class='task_priority'><%= task.priority %></td>
-    <td><%= link_to t('tasks.show'), task_path(task.id)  %></td>
-    <td><%= link_to t('tasks.edit'), edit_task_path(task.id), data: { confirm: t('tasks.Edit really?') } %></td>
-    <td><%= link_to t('tasks.delete'), task_path(task.id), method: :delete ,data: { confirm: t('tasks.Delete really?') } %></td>
+    <td><%= link_to t('tasks.show'), task_path(task.id), class:"label label-default" %></td>
+    <td><%= link_to t('tasks.edit'), edit_task_path(task.id), class:"label label-warning", data: { confirm: t('tasks.Edit really?') } %></td>
+    <td><%= link_to t('tasks.delete'), task_path(task.id), class:"label label-danger", method: :delete ,data: { confirm: t('tasks.Delete really?') } %></td>
   </tr>
 <% end %>
 </table>
 <%= link_to '終了期限でソート', tasks_path(sort_expired: "true"), class: "btn btn-warning btn-sm" %>
 <%= link_to '優先度でソート', tasks_path(sort_priority: "true"), class: "btn btn-default btn-sm" %>
-<%= link_to t('tasks.create'), new_task_path %>
+<%= link_to t('tasks.create'), new_task_path, class: "btn btn-danger btn-sm"  %>
+<div id="paginate">
 <%= paginate @tasks %>
+</div>
