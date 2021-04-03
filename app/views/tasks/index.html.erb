@@ -1,18 +1,36 @@
 <h1><%= t('application.task index') %></h1>
 <p><%= notice %></p>
+<div id="input-search">
+  <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.select :status, Task.statuses.keys, { include_blank: '選択してください'} %>
+	<%= f.submit "search" %>
+  <% end %>
+</div>
 <table>
   <tr>
     <th><%= t('application.Title') %></th>
     <th><%= t('application.Content') %></th>
+    <th>終了期限</th>
+    <th>ステータス</th>
+    <th>優先度</th>
   </tr>
-<% @tasks.each do |task| %>　　
+<% @tasks.each do |task| %>
   <tr>
     <td class="task_title"><%= task.title %></td>
     <td class="task_content"><%= task.content %></td>
-    <td><%= link_to t('tasks.show'), task_path(task.id)  %></td>
-    <td><%= link_to t('tasks.edit'), edit_task_path(task.id), data: { confirm: t('tasks.Edit really?') } %></td>
-    <td><%= link_to t('tasks.delete'), task_path(task.id), method: :delete ,data: { confirm: t('tasks.Delete really?') } %></td>
+    <td class='task_expired_at'><%= simple_time(task.expired_at) %></td>
+    <td class='task_status'><%= task.status %></td>
+    <td class='task_priority'><%= task.priority %></td>
+    <td><%= link_to t('tasks.show'), task_path(task.id), class:"label label-default" %></td>
+    <td><%= link_to t('tasks.edit'), edit_task_path(task.id), class:"label label-warning", data: { confirm: t('tasks.Edit really?') } %></td>
+    <td><%= link_to t('tasks.delete'), task_path(task.id), class:"label label-danger", method: :delete ,data: { confirm: t('tasks.Delete really?') } %></td>
   </tr>
 <% end %>
 </table>
-<%= link_to t('tasks.create'), new_task_path %>
+<%= link_to '終了期限でソート', tasks_path(sort_expired: "true"), class: "btn btn-warning btn-sm" %>
+<%= link_to '優先度でソート', tasks_path(sort_priority: "true"), class: "btn btn-default btn-sm" %>
+<%= link_to t('tasks.create'), new_task_path, class: "btn btn-danger btn-sm"  %>
+<div id="paginate">
+<%= paginate @tasks %>
+</div>
