@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    # if current_user.id != @user.id
+    if current_user.id == @user.id
       @user = User.find(params[:id])
-    # else
-    #   redirect_to tasks_path, notice: '自分以外のユーザのプロフィールは閲覧できません'
-    # end
+    else
+      redirect_to tasks_path, notice: '自分以外のユーザのプロフィールは閲覧できません'
+    end
   end
 
     private
