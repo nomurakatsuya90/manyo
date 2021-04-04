@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  # skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: [:new, :create]
   before_action :set_user, only: [:show]
 
   def new
-    # if logged_in?
-    #   redirect_to user_path(current_user.id)
-    #   flash[:notice] = 'すでにログインしています'
-    # else
+    if logged_in?
+      redirect_to user_path(current_user.id)
+      flash[:notice] = 'すでにログインしています'
+    else
       @user = User.new
-    # end
+    end
   end
 
   def create
