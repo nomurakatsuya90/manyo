@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: '#{@user.name}さんのプロフィールを編集しました'
+      redirect_to admin_users_path, notice: "#{@user.name}さんのプロフィールを編集しました"
     else
       flash[:notice] = '本ユーザを一般ユーザーにすると管理者が不在となるため更新できません。'
       render :edit
