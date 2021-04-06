@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user01 do
+  factory :user01, class: User do
     name { "一般ユーザー01" }
     sequence(:email) { "user01@example.jp" }
     password { "pass1234" }

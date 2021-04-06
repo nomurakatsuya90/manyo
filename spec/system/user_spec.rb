@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ログイン機能', type: :system do
-  # let!(:user01) {FactoryBot.create(:user01)}
-  # let!(:admin01) {FactoryBot.create(:admin01)}
+  let!(:user01) {FactoryBot.create(:user01)}
+  let!(:admin01) {FactoryBot.create(:admin01)}
 
   describe 'ユーザー登録機能' do
     context 'ユーザーを新規登録した場合' do
@@ -24,16 +24,16 @@ RSpec.describe 'ログイン機能', type: :system do
     end
   end
 
-  # describe 'セッション機能' do
-  #   context 'ユーザーが登録されている場合' do
-  #       it 'ログインができる' do
-  #         visit new_session_path
-  #         fill_in 'Email', with: 'user@example.jp'
-  #         fill_in 'Password', with: '111111'
-  #         click_on 'Log in'
-  #         expect(page).to have_content '一般ユーザーのページ'
-  #       end
-  #   end
+  describe 'セッション機能' do
+    context 'ユーザーが登録されている場合' do
+        it 'ログインができる' do
+          visit new_session_path
+          fill_in 'session_email', with: 'user01@example.jp'
+          fill_in 'session_password', with: 'pass1234'
+          click_on 'commit'
+          expect(page).to have_content '一般ユーザー01のページ'
+        end
+    end
   #   context 'ログインしている場合' do
   #     before do
   #       visit new_session_path
@@ -54,5 +54,5 @@ RSpec.describe 'ログイン機能', type: :system do
   #         expect(page).to have_content 'ログアウトしました'
   #       end
   #   end
-  # end
+  end
 end
