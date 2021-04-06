@@ -5,5 +5,6 @@ FactoryBot.define do
     created_at { '2021-03-26 17:00' }
     expired_at { '2021-04-01 10:26' }
     status { '未着手' }
+    # association :user
   end
 end
