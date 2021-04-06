@@ -45,10 +45,10 @@ RSpec.describe 'ログイン機能', type: :system do
           visit user_path(user01.id)
           expect(page).to have_content '一般ユーザー01のページ'
         end
-  #       it '他人の詳細画面にアクセスするとタスク一覧画面に遷移' do
-  #         visit user_path(admin.id)
-  #         expect(page).to have_content 'タスク一覧'
-  #       end
+        it '他人の詳細画面にアクセスするとタスク一覧画面に遷移' do
+          visit user_path(admin01.id)
+          expect(page).to have_content 'タスク一覧'
+        end
   #       it 'ログアウトができる' do
   #         click_link 'Logout'
   #         expect(page).to have_content 'ログアウトしました'
