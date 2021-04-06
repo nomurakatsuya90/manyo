@@ -49,10 +49,10 @@ RSpec.describe 'ログイン機能', type: :system do
           visit user_path(admin01.id)
           expect(page).to have_content 'タスク一覧'
         end
-  #       it 'ログアウトができる' do
-  #         click_link 'Logout'
-  #         expect(page).to have_content 'ログアウトしました'
-  #       end
+        it 'ログアウトができる' do
+          click_link 'Logout'
+          expect(page).to have_content 'Log in'
+        end
     end
   end
 end
