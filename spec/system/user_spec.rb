@@ -34,17 +34,17 @@ RSpec.describe 'ログイン機能', type: :system do
           expect(page).to have_content '一般ユーザー01のページ'
         end
     end
-  #   context 'ログインしている場合' do
-  #     before do
-  #       visit new_session_path
-  #       fill_in 'Email', with: 'user@example.jp'
-  #       fill_in 'Password', with: '111111'
-  #       click_on 'Log in'
-  #     end
-  #       it '自分のプロフィール画面に遷移' do
-  #         visit user_path(user.id)
-  #         expect(page).to have_content '一般ユーザーのページ'
-  #       end
+    context 'ログインしている場合' do
+      before do
+        visit new_session_path
+        fill_in 'session_email', with: 'user01@example.jp'
+        fill_in 'session_password', with: 'pass1234'
+        click_on 'commit'
+      end
+        it '自分のプロフィール画面に遷移' do
+          visit user_path(user01.id)
+          expect(page).to have_content '一般ユーザー01のページ'
+        end
   #       it '他人の詳細画面にアクセスするとタスク一覧画面に遷移' do
   #         visit user_path(admin.id)
   #         expect(page).to have_content 'タスク一覧'
@@ -53,6 +53,6 @@ RSpec.describe 'ログイン機能', type: :system do
   #         click_link 'Logout'
   #         expect(page).to have_content 'ログアウトしました'
   #       end
-  #   end
+    end
   end
 end
