@@ -15,15 +15,14 @@ RSpec.describe 'ログイン機能', type: :system do
         expect(page).to have_content 'new_userのページ'
       end
     end
-  end
 
-  #   context 'ログインせずにタスク一覧画面へアクセスした場合' do
-  #       it 'ログイン画面に遷移する' do
-  #         visit tasks_path
-  #         expect(page).to have_content 'ログインして下さい！'
-  #       end
-  #   end
-  # end
+    context 'ログインせずにタスク一覧画面へアクセスした場合' do
+        it 'ログイン画面に遷移する' do
+          visit tasks_path
+          expect(page).to have_content 'Log in'
+        end
+    end
+  end
 
   # describe 'セッション機能' do
   #   context 'ユーザーが登録されている場合' do
