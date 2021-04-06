@@ -92,10 +92,11 @@ RSpec.describe 'ログイン機能', type: :system do
         sleep(0.5)
         expect(page).to have_content 'ユーザ「test」を登録しました'     
       end
-    #   it 'ユーザーの詳細画面へアクセスできる' do
-    #     visit admin_user_path(user.id)
-    #     expect(page).to have_content '一般ユーザーのページ'
-    #   end
+      it 'ユーザーの詳細画面へアクセスできる' do
+        visit admin_user_path(user01.id)
+        expect(page).to have_content 'ユーザ詳細画面'
+        expect(page).to have_content 'user01'
+      end
     #   it 'ユーザの編集画面でユーザを編集できる' do
     #     visit admin_users_path
     #     all('tbody tr')[0].click_on 'ユーザの編集'
