@@ -108,12 +108,13 @@ RSpec.describe 'ログイン機能', type: :system do
         sleep(0.5)
         expect(page).to have_content '一般ユーザー01editedさんのプロフィールを編集しました'
       end
-    #   it 'ユーザーの削除ができる' do
-    #     visit admin_users_path
-    #     all('tbody tr')[0].click_on 'ユーザの削除'
-    #     page.driver.browser.switch_to.alert.accept
-    #     expect(page).to have_content 'ユーザーを削除しました'
-    #   end
+      it 'ユーザーの削除ができる' do
+        visit admin_users_path
+        click_on 'ユーザの削除', match: :first
+        page.driver.browser.switch_to.alert.accept
+        sleep(0.5)
+        expect(page).to have_content 'ユーザを削除しました'
+      end
     end
   end
 end
