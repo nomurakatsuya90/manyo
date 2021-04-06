@@ -97,15 +97,17 @@ RSpec.describe 'ログイン機能', type: :system do
         expect(page).to have_content 'ユーザ詳細画面'
         expect(page).to have_content 'user01'
       end
-    #   it 'ユーザの編集画面でユーザを編集できる' do
-    #     visit admin_users_path
-    #     all('tbody tr')[0].click_on 'ユーザの編集'
-    #     fill_in 'Name', with: 'edit_test'
-    #     fill_in 'Email', with: 'edit_test@example.com'
-    #     choose 'user_admin_true'
-    #     click_on '変更する'
-    #     expect(page).to have_content 'ユーザーを編集しました'
-    #   end
+      it 'ユーザの編集画面でユーザを編集できる' do
+        visit edit_admin_user_path(user01.id)
+        fill_in 'user_name', with: '一般ユーザー01edited'
+        fill_in 'user_email', with: 'user01@example.jp'
+        fill_in 'user_password', with: 'pass12345'
+        fill_in 'user_password_confirmation', with:'pass12345'
+        choose 'user_admin_true'
+        click_on '変更する'
+        sleep(0.5)
+        expect(page).to have_content '一般ユーザー01editedさんのプロフィールを編集しました'
+      end
     #   it 'ユーザーの削除ができる' do
     #     visit admin_users_path
     #     all('tbody tr')[0].click_on 'ユーザの削除'

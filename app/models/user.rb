@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   private
   def protect_last_admin
-    throw(:abort) if User.where(admin: true).count == 1 
+    user = User.where(id: self.id).where(admin: true)
+    throw(:abort) if ((User.where(admin: true).count == 1) && (user.present?)) 
   end
 end
