@@ -81,16 +81,17 @@ RSpec.describe 'ログイン機能', type: :system do
         sleep(0.5)
         expect(page).to have_content '管理者画面'
       end
-    #   it 'ユーザーの新規登録ができる' do
-    #     click_link '管理者画面へ' 
-    #     click_link 'ユーザーの新規登録'
-    #     fill_in 'Name', with: 'test'
-    #     fill_in 'Email', with: 'test@example.com'
-    #     fill_in 'Password', with: '123456'
-    #     fill_in 'Password confirmation', with: '123456'
-    #     click_on 'ユーザーの登録'
-    #     expect(page).to have_content 'ユーザーを登録しました'     
-    #   end
+      it 'ユーザーの新規登録ができる' do
+        click_link '管理者画面へ' 
+        click_link 'ユーザーの新規登録'
+        fill_in 'user_name', with: 'test'
+        fill_in 'user_email', with: 'test@example.com'
+        fill_in 'user_password', with: '123456'
+        fill_in 'user_password_confirmation', with: '123456'
+        click_on 'ユーザーの登録'
+        sleep(0.5)
+        expect(page).to have_content 'ユーザ「test」を登録しました'     
+      end
     #   it 'ユーザーの詳細画面へアクセスできる' do
     #     visit admin_user_path(user.id)
     #     expect(page).to have_content '一般ユーザーのページ'
