@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy, :show]
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.includes(:user)
     #ソート
     if params[:sort_expired]
       @tasks = @tasks.order(expired_at: :ASC)
@@ -29,6 +29,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if params[:back]
       render :new
     else

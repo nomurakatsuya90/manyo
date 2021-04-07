@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  resources :tasks do
-    # collection do
-    #   post :confirm
-    # end
+  namespace :admin do
+    get 'users/index'
+    get 'users/new'
+    get 'users/edit'
+    get 'users/show'
   end
+  get 'sessions/new'
+  namespace :admin do
+    resources :users
+  end
+  resources :tasks
   root to: 'tasks#index'
-  # get 'tasks/index'
-  # get 'tasks/new'
-  # get 'tasks/edit'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: [:new, :create, :show]
+  resources :sessions, only: [:new, :create, :destroy]
 end
