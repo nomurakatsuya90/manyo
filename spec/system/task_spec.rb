@@ -1,12 +1,31 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task03) { FactoryBot.create(:task, title: 'task03', content: '内容03', created_at: '2021-03-26 17:03', expired_at: '2021-04-03 16:01', status: '未着手') }
-  let!(:task01) { FactoryBot.create(:task, title: 'task01', content: '内容01', created_at: '2021-03-26 17:01', expired_at: '2021-04-01 17:02', status: '着手中') }
-  let!(:task02) { FactoryBot.create(:task, title: 'task02', content: '内容02', created_at: '2021-03-26 17:02', expired_at: '2021-04-02 15:02', status: '完了') }
+  user = FactoryBot.create(:user01)
+  let!(:task03) { FactoryBot.create(:task, title: 'task03', content: '内容03', created_at: '2021-03-26 17:03', expired_at: '2021-04-03 16:01', status: '未着手', user: user) }
+  let!(:task01) { FactoryBot.create(:task, title: 'task01', content: '内容01', created_at: '2021-03-26 17:01', expired_at: '2021-04-01 17:02', status: '着手中', user: user) }
+  let!(:task02) { FactoryBot.create(:task, title: 'task02', content: '内容02', created_at: '2021-03-26 17:02', expired_at: '2021-04-02 15:02', status: '完了', user: user) }
+
+  # let!(:task03) { FactoryBot.create(:task03)}
+  # let!(:task01) { FactoryBot.create(:task01)}
+  # let!(:task02) { FactoryBot.create(:task02)}
 
   before do
+  #   visit tasks_path
+    visit new_session_path
+    fill_in 'session_email', with:'user01@example.jp'
+    fill_in 'session_password', with: 'pass1234'
+    click_on 'commit'
+    sleep(0.5)
     visit tasks_path
   end
+
+  # def login(user01)
+  #   visit new_session_path
+  #   fill_in 'session_email', with: user01.email
+  #   fill_in 'session_password', with: user01.password
+  #   click_on 'commit'
+  #   sleep(0.5)
+  # end
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
