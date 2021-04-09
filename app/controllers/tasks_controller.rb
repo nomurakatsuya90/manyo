@@ -19,6 +19,9 @@ class TasksController < ApplicationController
     if params[:status] != "" && params[:status] != nil
       @tasks = @tasks.status_search(params[:status])
     end
+
+    @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+
     #ページネーション　kaminari
     @tasks = @tasks.page(params[:page]).per(5)
   end
@@ -67,7 +70,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, { label_ids: [] })
   end
 
   def set_task

@@ -29,6 +29,12 @@
     <%= form.label :priority, 'priority' %>
     <%= form.select :priority, Task.priorities.keys, { include_blank: '選択してください' } %>
   </div>
+    <div class="task_label">
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <%= form.label :label_ids, label.name, value: label[:id] %>
+    <% end %>
+  </div>
   <%= form.submit %>
   <%= link_to t('tasks.Back index'), tasks_path %>
 <% end %>
