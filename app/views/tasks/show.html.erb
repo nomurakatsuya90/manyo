@@ -5,4 +5,7 @@
 <p><%= simple_time(@task.expired_at) %></p>
 <p><%= @task.status %></p>
 <p><%= @task.priority %></p>
+<% @task.labels.each do |label| %>
+  <p><%= label.name %></p>
+<% end %>
 <%= link_to t('tasks.Back index'), tasks_path %>
