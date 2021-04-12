@@ -65,24 +65,40 @@ RSpec.describe 'ラベル登録機能', type: :system do
     end
   end
 
-  # describe '検索機能' do
-  #   context 'ラベルで検索した場合' do
-  #     it '検索結果が表示される' do
-  #      user = FactoryBot.create(:other_user1)
-  #      login(user)
-  #      label = FactoryBot.create(:label02)
-  #      visit new_task_path
-  #      fill_in 'Title', with: 'aaa'
-  #      fill_in 'Details', with: 'bbb'
-  #      fill_in :task_expired_at, with: '002021-03-17　11:39'
-  #      select '未着手', from: 'status'
-  #      select '中', from: 'priority'
-  #      check 'Task2'  
-  #      click_on 'Create Task'
-  #      select 'Task2'
-  #      click_on 'search'
-  #      expect(page).to have_content 'Task2'
-  #     end
-  #   end
-  # end
+  describe '検索機能' do
+    context 'ラベルで検索した場合' do
+      it '検索結果が表示される' do
+       user = FactoryBot.create(:user01)
+       login(user)
+       label = FactoryBot.create(:label01)
+       label = FactoryBot.create(:label02)
+       visit new_task_path
+       sleep(0.5)
+       fill_in 'task_title', with: 'タスク名01'
+       fill_in 'task_content', with: 'タスク詳細01'
+       fill_in :task_expired_at, with: '2021-04-01 10:35'.to_datetime
+       select '着手中', from: 'status'
+       select '中', from: 'priority'
+       check 'LABEL01'
+       click_button 'commit'
+
+       visit new_task_path
+       sleep(0.5)
+       fill_in 'task_title', with: 'タスク名02'
+       fill_in 'task_content', with: 'タスク詳細02'
+       fill_in :task_expired_at, with: '2021-04-02 10:35'.to_datetime
+       select '未着手', from: 'status'
+       select '高', from: 'priority'
+       check 'LABEL02'
+       click_button 'commit'
+       sleep(0.5)
+
+       visit tasks_path
+       select 'LABEL02'
+       click_button 'commit'
+       expect(page).to have_content 'タスク名02'
+       expect(page).not_to have_content 'タスク名01'
+      end
+    end
+  end
 end
